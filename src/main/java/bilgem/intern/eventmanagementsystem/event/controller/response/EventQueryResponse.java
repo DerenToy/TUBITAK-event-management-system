@@ -14,6 +14,7 @@ public class EventQueryResponse {
     private LocalDate finishDate;
     private Long quota;
     private String imageUrl;
+    private Long numberOfParticipants;
 
 
     public EventQueryResponse(final Event event) {
@@ -23,6 +24,7 @@ public class EventQueryResponse {
         this.finishDate = event.finishDate();
         this.quota = event.quota();
         this.imageUrl = event.imageUrl();
+        this.numberOfParticipants = event.numberOfParticipants();
 
 
     }

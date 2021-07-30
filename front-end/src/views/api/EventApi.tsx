@@ -12,6 +12,7 @@ export interface EventQueryResponse {
     finishDate : string;
     quota : number;
     imageUrl: string;
+    numberOfParticipants: number;
 }
 
 
