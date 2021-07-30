@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class EventService {
@@ -86,6 +87,15 @@ public class EventService {
             return new MessageResponse(MessageType.ERROR, EVENT_DOESNT_EXIST_ID_MESSAGE.formatted(id));
         } else if (eventFromDB.startDate().isBefore((CURRENT_DATE)) ){
             return new MessageResponse(MessageType.ERROR, EVENT_CANNOT_BE_DELETED);
+        }
+
+        try {
+            Set<EventRegistration> eventRegistrationList = eventRegistrationRepository.getEventRegistrationsByEvent(eventFromDB);
+            eventRegistrationList.forEach(eventRegistrationRepository::delete);
+
+        }
+        catch(Exception ignored){
+
         }
         eventRepository.deleteById(id);
         return new MessageResponse(MessageType.SUCCESS, EVENT_DELETED_MESSAGE.formatted(id));
