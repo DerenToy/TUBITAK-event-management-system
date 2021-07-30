@@ -71,7 +71,7 @@ public class EventService {
             return new MessageResponse(MessageType.ERROR, EVENT_CANNOT_BE_UPDATED);
 
         }else if(!updatedEvent.eventName().equals(eventFromDB.eventName()) && eventRepository.existsByEventName(updatedEvent.eventName()) ){
-            return new MessageResponse(MessageType.ERROR, EVENT_ALREADY_EXISTS_MESSAGE);
+            return new MessageResponse(MessageType.ERROR, EVENT_ALREADY_EXISTS_MESSAGE.formatted(updatedEvent.eventName()));
         }
 
         eventFromDB.updateEvent(updatedEvent);
