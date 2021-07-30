@@ -6,7 +6,7 @@ import bilgem.intern.eventmanagementsystem.authentication.repository.AuthorityRe
 import bilgem.intern.eventmanagementsystem.applyEvent.entity.EventRegistration;
 import bilgem.intern.eventmanagementsystem.event.entity.Event;
 import bilgem.intern.eventmanagementsystem.event.repository.EventRepository;
-import bilgem.intern.eventmanagementsystem.user.entity.Users;
+import bilgem.intern.eventmanagementsystem.user.entity.User;
 import bilgem.intern.eventmanagementsystem.user.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -40,13 +40,13 @@ public class DatabasePopulator {
         Authority userAuthority = authorityRepository.save(new Authority("USER", new HashSet<>()));
         Authority adminAuthority = authorityRepository.save(new Authority("ADMIN", new HashSet<>()));
         Set<EventRegistration> registrations = new HashSet<EventRegistration>();
-        Users admin = new Users("derentoy@gmail.com", "admin", passwordEncoder.encode("admin"), registrations, Set.of(userAuthority, adminAuthority));
+        User admin = new User("derentoy@gmail.com", "admin", passwordEncoder.encode("admin"), registrations, Set.of(userAuthority, adminAuthority));
         userRepository.save(admin);
 
-        Users user = new Users("derentoy@gmail.com", "user", passwordEncoder.encode("user") , registrations, Set.of(userAuthority));
+        User user = new User("derentoy@gmail.com", "user", passwordEncoder.encode("user") , registrations, Set.of(userAuthority));
         userRepository.save(user);
 
-        Users user2 = new Users("derentoy@gmail.com", "user2", passwordEncoder.encode("user2") , registrations, Set.of(userAuthority));
+        User user2 = new User("derentoy@gmail.com", "user2", passwordEncoder.encode("user2") , registrations, Set.of(userAuthority));
         userRepository.save(user2);
 
         Event event1 = new Event("Kadife Çiçekleri", LocalDate.parse("2021-09-09"), LocalDate.parse("2021-10-10"), 1L,"http://ast.gov.tr/Uploads/50f8d5afa99248af8e444c48c6578643.jpg");

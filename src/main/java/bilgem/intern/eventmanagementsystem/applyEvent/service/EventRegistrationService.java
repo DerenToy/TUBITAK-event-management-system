@@ -8,7 +8,7 @@ import bilgem.intern.eventmanagementsystem.common.enums.MessageType;
 import bilgem.intern.eventmanagementsystem.emailSend.service.EmailService;
 import bilgem.intern.eventmanagementsystem.event.entity.Event;
 import bilgem.intern.eventmanagementsystem.event.repository.EventRepository;
-import bilgem.intern.eventmanagementsystem.user.entity.Users;
+import bilgem.intern.eventmanagementsystem.user.entity.User;
 import bilgem.intern.eventmanagementsystem.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +39,7 @@ public class EventRegistrationService {
 
     public MessageResponse applyEvent(EventRegistrationRequest request, String username, Long eventId) {
 
-        Users user = userRepository.getByUsername(username);
+        User user = userRepository.getByUsername(username);
         Event event  = eventRepository.getById(eventId);
         Set<EventRegistration> registrations = eventRegistrationRepository.getEventRegistrationsByEvent(event);
 

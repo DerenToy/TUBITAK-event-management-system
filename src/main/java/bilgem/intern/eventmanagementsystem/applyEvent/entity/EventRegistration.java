@@ -3,7 +3,7 @@ package bilgem.intern.eventmanagementsystem.applyEvent.entity;
 
 import bilgem.intern.eventmanagementsystem.common.entity.BaseEntity;
 import bilgem.intern.eventmanagementsystem.event.entity.Event;
-import bilgem.intern.eventmanagementsystem.user.entity.Users;
+import bilgem.intern.eventmanagementsystem.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,7 +23,7 @@ public class EventRegistration extends BaseEntity {
 
         @ManyToOne
         @JoinColumn(name = "user_id")
-        Users user;
+        User user;
 
         @Getter
         @ManyToOne

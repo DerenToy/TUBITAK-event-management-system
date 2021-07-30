@@ -11,11 +11,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Set;
 
+
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Users extends BaseEntity implements UserDetails {
+@Table(name="user", schema = "public")
+public class User extends BaseEntity implements UserDetails {
 
     private String email;
     private String username;

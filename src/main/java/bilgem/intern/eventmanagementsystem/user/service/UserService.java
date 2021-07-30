@@ -5,7 +5,7 @@ import bilgem.intern.eventmanagementsystem.event.entity.Event;
 import bilgem.intern.eventmanagementsystem.applyEvent.entity.EventRegistration;
 import bilgem.intern.eventmanagementsystem.applyEvent.repository.EventRegistrationRepository;
 import bilgem.intern.eventmanagementsystem.event.repository.EventRepository;
-import bilgem.intern.eventmanagementsystem.user.entity.Users;
+import bilgem.intern.eventmanagementsystem.user.entity.User;
 import bilgem.intern.eventmanagementsystem.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -26,7 +26,7 @@ public class UserService {
     // EventRegistration'ı stream'leyip Event'e map'leyip list olarak alıyoruz..
     // Kullanıcının kayıt olduğu event'leri almasını sağlar.
     public List<Event> getUserRegisteredEvents(String username){
-        Users user = userRepository.getByUsername(username);
+        User user = userRepository.getByUsername(username);
         Set<EventRegistration> registrations= eventRegistrationRepository.getEventRegistrationsByUser(user);
         return registrations
                 .stream()

@@ -15,6 +15,7 @@ import logo from './logo.png';
 import PrivateRoute from "./views/route/PrivateRoute";
 import AdminRoute from "./views/route/AdminRoute";
 import {faSignOutAlt} from "@fortawesome/free-solid-svg-icons";
+import {ListParticipants} from "./views/ListParticipants/ListParticipants";
 
 
 // Navigasyon bar'ının oluşturulduğu, route işlemlerinin gerçekleştirildiği component'tir.
@@ -134,6 +135,7 @@ class App extends Component {
             <Route path="/login" component={Login} />
             <Route component={NotFound} path="/not-found" exact />
             <PrivateRoute component={UserView} path="/events/user"  exact />
+             <AdminRoute component={ListParticipants} path="/events/admin/participants" exact />
             <AdminRoute  isAdmin={true} component={AdminView} path="/events/admin" exact/>
             <PrivateRoute component={QrGenerator} path= "/qr-code"  exact />
 

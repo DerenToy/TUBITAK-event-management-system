@@ -22,6 +22,8 @@ export interface EventRegistirationResponse {
     firstName: string;
     lastName : string;
     registeredAt : string;
+    eventName: string;
+    username: string;
 }
 
 // Axios kullanarak back-end'e istek attığım component. Buradaki fonksiyonların async olması fonksiyondan Promise
@@ -85,7 +87,6 @@ export class EventApi {
         });
         return response.data;
     }
-
 
 
 

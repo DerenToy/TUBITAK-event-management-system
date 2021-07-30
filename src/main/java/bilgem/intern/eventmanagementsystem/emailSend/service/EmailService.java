@@ -5,7 +5,7 @@ import javax.mail.util.ByteArrayDataSource;
 import bilgem.intern.eventmanagementsystem.applyEvent.controller.request.EventRegistrationRequest;
 import bilgem.intern.eventmanagementsystem.common.enums.MessageType;
 import bilgem.intern.eventmanagementsystem.event.entity.Event;
-import bilgem.intern.eventmanagementsystem.user.entity.Users;
+import bilgem.intern.eventmanagementsystem.user.entity.User;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class EmailService {
     }
 
     // Kullanıcı herhangi bir etkinliğe katıldıktan sonra kullanıcıya bir e-posta gönderilmesini sağlar.
-    public MessageType sendEmail(final EventRegistrationRequest request, final Users user, final Event event) {
+    public MessageType sendEmail(final EventRegistrationRequest request, final User user, final Event event) {
 
         try {
             MimeMessage message = javaMailSender.createMimeMessage();

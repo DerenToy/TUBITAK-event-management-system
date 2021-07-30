@@ -6,6 +6,8 @@ import {toast} from "react-toastify";
 import {EventListForAdmin} from "./EventList/EventListForAdmin";
 import { Bar } from 'react-chartjs-2';
 import {makeStyles} from "@material-ui/core/styles";
+import {ListParticipants} from "./ListParticipants/ListParticipants";
+import { Link, useLocation } from "react-router-dom";
 
 const options = {
 
@@ -62,6 +64,9 @@ export function AdminView() {
 
         // Etkinlik - Katılımcı sayısı bar chart'ının state'ini tutar.
         const [isParticipantsBarChartOpen, setParticipantsBarChartOpen] = useState(false);
+
+        // Etkinliğe başvuranların state'ini tutar.
+        const [isGetParticipants, setGetParticipants] = useState(false);
 
         const eventApi = new EventApi();
         const classes = useStyles();
@@ -123,6 +128,8 @@ export function AdminView() {
             currentEvent.push(<EventListForAdmin event={event} updateEvent={updateEvent} deleteEvent={deleteEvent}/>);
         });
 
+
+        /*** Bar Chart için verilerin hazırlanması ***/
         let numberOfParticipants: number[] =[];
         eventQueryResponses.forEach((event: EventQueryResponse ) =>{
             numberOfParticipants.push(event.numberOfParticipants);
@@ -133,34 +140,37 @@ export function AdminView() {
             eventNames.push(event.eventName);
         });
 
-    const data = {
-        labels: eventNames,
-        datasets: [
-            {
-                label: '# of Participants',
-                data: numberOfParticipants,
-                backgroundColor: [
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(255, 159, 64, 0.2)',
-                ],
-                width: 700,
-                height : 350,
-                borderColor: [
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(255, 159, 64, 1)',
-                ],
-                borderWidth: 1,
-            },
-        ],
-    };
+        const data = {
+            labels: eventNames,
+            datasets: [
+                {
+                    label: '# of Participants',
+                    data: numberOfParticipants,
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                    ],
+                    width: 700,
+                    height : 350,
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 159, 64, 1)',
+                    ],
+                    borderWidth: 1,
+                },
+            ],
+        };
+
+
+
 
 
         return (
@@ -182,6 +192,11 @@ export function AdminView() {
 
                                     </h4>
                                 </div>
+                                <div className="panel-heading">
+                                    <h4 className="panel-title">
+                                        <Link to="/events/admin/participants"> <button className= {classes.button}>Show Participants</button> </Link>
+                                    </h4>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -192,17 +207,16 @@ export function AdminView() {
 
                         {isParticipantsBarChartOpen ?
                             (  <h2 className="title center"> Event - Participants Bar Chart</h2>):
-                            ( <h2 className="title center">All Events</h2>)
+                            ( <h2 className="title center">All Events</h2>
+                            )
                         }
 
                         {isParticipantsBarChartOpen ?
-                        (
-                            <Bar data={data} options={options}/>
-                       ) :
+                            (
+                                <Bar data={data} options={options}/>
+                            ) :
                             (currentEvent)
-
                         }
-
 
                     </div>
                 </div>
@@ -211,7 +225,6 @@ export function AdminView() {
                     isOpen={isAddEventModalOpen}
                     handleClose={() => setAddEventModelOpen(false)}
                     addEvent={addEvent}/>
-
 
             </div>
 
