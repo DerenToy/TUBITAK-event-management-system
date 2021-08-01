@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         paddingTop: '100%',
     },
     buttonApply: {
-        color : 'rgba(237,60,51,255)',
+        color : 'red',
         marginLeft: 'auto',
     }
 

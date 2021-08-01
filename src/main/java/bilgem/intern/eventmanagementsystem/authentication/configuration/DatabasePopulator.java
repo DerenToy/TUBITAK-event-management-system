@@ -50,10 +50,13 @@ public class DatabasePopulator {
         userRepository.save(user2);
 
         Event event1 = new Event("Kadife Çiçekleri", LocalDate.parse("2021-09-09"), LocalDate.parse("2021-10-10"), 1L,"http://ast.gov.tr/Uploads/50f8d5afa99248af8e444c48c6578643.jpg");
-        Event event2 = new Event("Düğün Hatırası", LocalDate.parse("2022-01-01"), LocalDate.parse("2025-02-02"), 2L, "http://ast.gov.tr/Uploads/55928829185e423bbfe3205310d1c40a.jpeg");
+        Event event2 = new Event("Düğün Hatırası", LocalDate.parse("2022-01-01"), LocalDate.parse("2025-02-02"), 5L, "http://ast.gov.tr/Uploads/55928829185e423bbfe3205310d1c40a.jpeg");
+
+        Event event3 = new Event("Takıntılar", LocalDate.parse("2022-01-01"), LocalDate.parse("2023-01-02"), 2L, "http://ast.gov.tr/Uploads/0570bef24dfc4c4a863b54f7653a9f38.jpeg");
 
         eventRepository.save(event1);
         eventRepository.save(event2);
+        eventRepository.save(event3);
 
     }
 }

@@ -66,7 +66,8 @@ export  function UserView() {
     // eventQueryResponses'ın içindeki etkinliklere göre EventListForUser component'inin sayfaya eklenmesini sağlar.
     let currentEvent:any[] = [];
     eventQueryResponses.forEach((event) => {
-        currentEvent.push(<EventListForUser event={event} applyEvent={applyEvent}/>);
+            currentEvent.push(<EventListForUser event={event} applyEvent={applyEvent}/>);
+
 
 
     });

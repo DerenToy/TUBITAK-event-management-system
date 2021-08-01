@@ -22,8 +22,8 @@ public class EventService {
 
     private static final String EVENT_ADDED_MESSAGE = "Event with name %s has been added successfully!";
     private static final String EVENT_ALREADY_EXISTS_MESSAGE = "Event with name %s already exists!";
-    private final static String EVENT_DOESNT_EXIST_ID_MESSAGE = "Event with id %s does not exists!";
-    private static final String START_DATE_MUST_CAME_BEFORE_FINISH_DATE = "The start date of event must come before finish date!";
+    private final static String EVENT_DOESNT_EXIST_ID_MESSAGE = "Event with id %s does not exist!";
+    private static final String START_DATE_MUST_CAME_BEFORE_FINISH_DATE = "The start date of the event must come before finish date!";
     private static final String EVENT_UPDATED_MESSAGE = "Event with id %s has been updated successfully!";
     private static final String EVENT_DELETED_MESSAGE = "Event with id %s has been deleted successfully!";
     private static final String EVENT_CANNOT_BE_ADDED = "The start date of the event has passed, you can not add this event!";
@@ -73,6 +73,9 @@ public class EventService {
 
         }else if(!updatedEvent.eventName().equals(eventFromDB.eventName()) && eventRepository.existsByEventName(updatedEvent.eventName()) ){
             return new MessageResponse(MessageType.ERROR, EVENT_ALREADY_EXISTS_MESSAGE.formatted(updatedEvent.eventName()));
+        }else if(updatedEvent.startDate().isAfter(updatedEvent.finishDate())){
+            return new MessageResponse(MessageType.ERROR, START_DATE_MUST_CAME_BEFORE_FINISH_DATE);
+
         }
 
         eventFromDB.updateEvent(updatedEvent);
